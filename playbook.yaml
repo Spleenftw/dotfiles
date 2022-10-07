@@ -1,0 +1,235 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Swap keyboard layout
+      replace:
+        path: /etc/default/keyboard
+        regexp: 'us'
+        replace: 'fr'
+
+    - name: Install core
+      apt:
+        name:
+          - alsa-utils
+          - build-essential 
+          - cmake 
+          - cmake-data 
+          - dkms 
+          - file
+          - make
+          - openssh-server 
+          - procps
+
+    - name: Add spleenftw to sudoers
+      shell: echo "spleenftw  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/spleenftw
+
+    - name: Install go
+      block: 
+        - name: Unarchive go
+          unarchive: 
+            src: https://golang.org/dl/go1.17.linux-amd64.tar.gz
+            dest: /usr/local
+            remote_src: yes
+        - name: Source go
+          shell: export PATH=/usr/local/go/bin:${PATH}
+
+    - name: Add sid repo
+      apt_repository: 
+        repo: deb http://deb.debian.org/debian sid main
+
+    - name: Install some basic utils
+      apt:
+        name:
+          - apt-transport-https
+          - autorandr
+          - awesome
+          - bat
+          - cargo 
+          - compton 
+          - dbus-x11 
+          - dirmngr 
+          - feh 
+          - ffmpeg 
+          - fish
+          - fzf
+          - graphviz
+          - htop
+          - kitty
+          - libfreetype6-dev
+          - neovim
+          - openvpn
+          - polybar
+          - snap
+          - snapd
+          - suckless-tools 
+          - tig 
+          - tmux 
+          - unzip
+          - xclip
+          - xinput 
+          - zip
+
+
+    - name: Install secondary deps
+      apt:
+        name: 
+          - imagemagick
+          - libasound2-dev 
+          - libcairo2-dev 
+          - libconfig-dev 
+          - libcurl4-openssl-dev 
+          - libdbus-1-dev 
+          - libev-dev 
+          - libevdev-dev 
+          - libfontconfig1-dev 
+          - libgl1-mesa-dev 
+          - libglib2.0-dev 
+          - libiw-dev 
+          - libjpeg-dev
+          - libmpdclient-dev 
+          - libnotify-dev
+          - libpam0g-dev 
+          - libpcre2-dev 
+          - libpcre3-dev 
+          - libpixman-1-dev 
+          - libpulse-dev 
+          - librsvg2-2 
+          - libssl-dev
+          - libstartup-notification0-dev 
+          - libx11-dev 
+          - libx11-xcb-dev 
+          - libxcb1-dev 
+          - libxcb-composite0-dev 
+          - libxcb-cursor-dev 
+          - libxcb-ewmh-dev 
+          - libxcb-glx0-dev 
+          - libxcb-icccm4-dev 
+          - libxcb-image0-dev 
+          - libxcb-keysyms1-dev 
+          - libxcb-present-dev 
+          - libxcb-randr0-dev 
+          - libxcb-render0-dev 
+          - libxcb-render-util0-dev 
+          - libxcb-shape0-dev 
+          - libxcb-util0-dev 
+          - libxcb-xfixes0-dev 
+          - libxcb-xinerama0-dev 
+          - libxcb-xkb-dev 
+          - libxcb-xrm0 
+          - libxcb-xrm-dev 
+          - libxcb-xtest0-dev 
+          - libxdg-basedir-dev 
+          - libxext-dev 
+          - libxinerama-dev 
+          - libxkbcommon-dev 
+          - libxkbcommon-dev 
+          - libxkbcommon-x11-dev 
+          - libxkbcommon-x11-dev 
+          - libxss-dev 
+          - libyajl-dev 
+          - meson
+          - openresolv
+          - pkg-config 
+          - pkg-config 
+          - python2
+          - python3
+          - python3-pip 
+          - python3-xcbgen 
+          - rsync
+          - sudo
+          - uthash-dev 
+          - xcb 
+          - xcb-proto 
+          - xfonts-base 
+          - xinit 
+          - xserver-xorg 
+          - xserver-xorg-input-all 
+          - xserver-xorg-video-all 
+        update_cache: yes
+
+    - name: Add ssh directory
+      file:
+        path: ~/.ssh
+        state: directory
+        mode: '0755'
+      become_user: spleenftw
+
+    - name: Add ssh key
+      community.crypto.openssh_keypair:
+        path: ~/.ssh/id_rsa
+        size: 4096
+        type: rsa
+      become_user: spleenftw
+
+    - name: Install btop
+      block:
+        - name: Download btop
+          get_url: 
+            url: https://github.com/aristocratos/btop/releases/download/v1.2.5/btop-x86_64-linux-musl.tbz 
+            dest: /tmp/btop.tbz
+        - name: Unarchive btop
+          shell: mkdir btop && tar -xjf btop.tbz -C btop
+          args:
+            chdir: /tmp
+        - name: Install btop binary
+          shell: make install
+          args:
+            chdir: /tmp/btop
+
+    - name: Install ripgrep
+      apt:
+        deb: https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+
+    - name: Install vscode
+      apt:
+        deb: https://az764295.vo.msecnd.net/stable/899d46d82c4c95423fb7e10e68eba52050e30ba3/code_1.63.2-1639562499_amd64.deb
+
+    - name: Install virtualbox
+      apt: 
+        deb: https://download.virtualbox.org/virtualbox/6.1.38/virtualbox-6.1_6.1.38-153438~Debian~bullseye_amd64.deb
+
+    - name: Install vagrant
+      block:
+        - name: Add vagrant repo key
+          apt_key:
+            url: https://apt.releases.hashicorp.com/gpg
+        - name: Add vagrant repo
+          apt_repository:
+            repo: deb [arch=amd64] https://apt.releases.hashicorp.com bullseye main
+        - name: Install vagrant package
+          apt:
+            name: vagrant
+            update_cache: yes
+
+    - name : Clone layout-machi
+      git:  
+        repo: https://github.com/xinhaoyuan/layout-machi.git 
+        dest: $HOME/.config/awesome
+
+    - name : Adding wallpapers repo
+      git:  
+        repo: https://github.com/spleenftw/wallpaper.git
+        dest: $HOME/Github
+
+    - name: install Spotify via snap
+      community.general.snap:
+        name: spotify 
+        state: present
+    - name: install Brave via snap
+      community.general.snap:
+        name: brave
+        state: present
+
+    - name: Remove useless packages from the cache
+      apt:
+       autoclean: yes
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+
+    - name: Wrap up user install
+      script: install.sh
+      args:
+        chdir: /home/spleenftw/Github/dotfiles
+      become_user: spleenftw
