@@ -1,0 +1,1 @@
+/home/spleenftw/.fzf/shell/key-bindings.fish
