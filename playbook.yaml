@@ -215,10 +215,6 @@
       community.general.snap:
         name: brave
         state: present
-
-    - name: Install btop
-      block:
-        - name: Download btop
         
     - name : Fonts
       block:
