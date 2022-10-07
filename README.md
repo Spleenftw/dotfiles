@@ -88,5 +88,6 @@ You can find all of the wallpapers i'm using in the [wallpapers](https://github.
 # Todo list
 
 - [ ] Adding the kitty install to the install.sh & playbook.yml files.
+- [ ] Adding the font&icon install to the playbook.yml file.
 - [ ] Adding the fish plugins install to the install.sh & playbook.yml files.
 - [x] Adding the starship prompt install to the install.sh & playbook.yml files.
