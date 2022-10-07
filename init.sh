@@ -1,7 +1,7 @@
 #! /bin/bash 
 
 installAnsible () {
-  apt install curl gnupg ansible -y
+  sudo apt install curl gnupg ansible -y
 
   # launch playbook
   ansible-galaxy collection install community.general
