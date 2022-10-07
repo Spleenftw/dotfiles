@@ -21,7 +21,7 @@
           - openssh-server 
           - procps
 
-    - name: Add spleenftw to sudoers
+    - name: Add user to sudoers
       shell: echo "spleenftw  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/spleenftw
 
     - name: Install go
@@ -168,10 +168,12 @@
           get_url: 
             url: https://github.com/aristocratos/btop/releases/download/v1.2.5/btop-x86_64-linux-musl.tbz 
             dest: /tmp/btop.tbz
+
         - name: Unarchive btop
           shell: mkdir btop && tar -xjf btop.tbz -C btop
           args:
             chdir: /tmp
+
         - name: Install btop binary
           shell: make install
           args:
@@ -194,9 +196,11 @@
         - name: Add vagrant repo key
           apt_key:
             url: https://apt.releases.hashicorp.com/gpg
+
         - name: Add vagrant repo
           apt_repository:
             repo: deb [arch=amd64] https://apt.releases.hashicorp.com bullseye main
+
         - name: Install vagrant package
           apt:
             name: vagrant
@@ -211,6 +215,7 @@
       community.general.snap:
         name: spotify 
         state: present
+
     - name: install Brave via snap
       community.general.snap:
         name: brave
@@ -274,6 +279,7 @@
     - name: Remove useless packages from the cache
       apt:
        autoclean: yes
+       
     - name: Remove dependencies that are no longer required
       apt:
         autoremove: yes
