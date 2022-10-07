@@ -218,51 +218,58 @@
 
     - name : Fonts
       block:
-      - name: ensure fonts directory
-        file:
-        path: "{{ lookup('env', 'HOME') }}/.fonts"
-        state: directory
-      - name: 3270
-        shell: "ls {{ lookup('env', 'HOME') }}/.fonts/3270*"
-        register : 3270
-        ignore_errors: yes
-      - name: Download 3270
-        when: 3270 is failed
-        ansible.builtin.unarchive:
-          src: https://github.com/rbanffy/3270font/releases/download/v3.0.1/3270_fonts_d916271.zip
-          dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-          remote_src: yes
-      - name: Agave
-        shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Agave*"
-        register : Agave
-        ignore_errors: yes
-      - name: Download Agave
-        when: Agave is failed
-        ansible.builtin.unarchive:
-          src: https://github.com/blobject/agave/releases/latest/download/Agave-Regular.ttf
-          dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-          remote_src: yes
-      - name: AnonymousPro
-        shell: "ls {{ lookup('env', 'HOME') }}/.fonts/AnonymousPro*"
-        register : AnonymousPro
-        ignore_errors: yes
-      - name: Download AnonymousPro
-        when: AnonymousPro is failed
-        ansible.builtin.unarchive:
-          src: https://fonts.google.com/download?family=Anonymous%20Pro
-          dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-          remote_src: yes
-
-      - name: Arimo
-        shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Arimo*"
-        register : Arimo
-        ignore_errors: yes
-      - name: Download Arimo
-        when: Arimo is failed
-        ansible.builtin.unarchive:
-          src: https://fonts.google.com/download?family=Arimo
-          dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-          remote_src: yes
+        - name: ensure fonts directory
+          file:
+          path: "{{ lookup('env', 'HOME') }}/.fonts"
+          state: directory
+      
+        - name: 3270
+          shell: "ls {{ lookup('env', 'HOME') }}/.fonts/3270*"
+          register : 3270
+          ignore_errors: yes
+        
+        - name: Download 3270
+          when: 3270 is failed
+          ansible.builtin.unarchive:
+            src: https://github.com/rbanffy/3270font/releases/download/v3.0.1/3270_fonts_d916271.zip
+            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            remote_src: yes
+        
+        - name: Agave
+          shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Agave*"
+          register : Agave
+          ignore_errors: yes
+        
+        - name: Download Agave
+          when: Agave is failed
+          ansible.builtin.unarchive:
+            src: https://github.com/blobject/agave/releases/latest/download/Agave-Regular.ttf
+            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            remote_src: yes
+        
+        - name: AnonymousPro
+          shell: "ls {{ lookup('env', 'HOME') }}/.fonts/AnonymousPro*"
+          register : AnonymousPro
+          ignore_errors: yes
+        
+        - name: Download AnonymousPro
+          when: AnonymousPro is failed
+          ansible.builtin.unarchive:
+            src: https://fonts.google.com/download?family=Anonymous%20Pro
+            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            remote_src: yes
+  
+        - name: Arimo
+          shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Arimo*"
+          register : Arimo
+          ignore_errors: yes
+        
+        - name: Download Arimo
+          when: Arimo is failed
+          ansible.builtin.unarchive:
+            src: https://fonts.google.com/download?family=Arimo
+            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            remote_src: yes
 
     - name: Remove useless packages from the cache
       apt:
