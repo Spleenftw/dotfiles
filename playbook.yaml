@@ -207,11 +207,6 @@
         repo: https://github.com/xinhaoyuan/layout-machi.git 
         dest: $HOME/.config/awesome
 
-    - name : Adding wallpapers repo
-      git:  
-        repo: https://github.com/spleenftw/wallpaper.git
-        dest: $HOME/Github
-
     - name: install Spotify via snap
       community.general.snap:
         name: spotify 
