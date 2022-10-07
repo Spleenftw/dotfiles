@@ -1,10 +1,6 @@
 # Spleenftw's dotfiles
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/spleenftw/dotfiles)
-![GitHub repo size](https://img.shields.io/github/repo-size/spleenftw/dotfiles)
-![](https://tokei.rs/b1/github/spleenftw/dotfiles?category=files)
-![](https://tokei.rs/b1/github/spleenftw/dotfiles?category=lines)
-![](https://tokei.rs/b1/github/spleenftw/dotfiles?category=code)
 
 ### Currently supports the following confs :
 - [autorandr](https://github.com/phillipberndt/autorandr) 
