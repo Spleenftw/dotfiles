@@ -1,0 +1,88 @@
+# ~/.config/starship.toml
+
+#PROMPT CONFIG
+format = """
+$username\
+$directory\
+$hostname\
+$time\
+$status\
+$cmd_duration\
+$git_branch\
+$git_status\
+$character"""
+
+# 
+add_newline = false
+[line_break]
+disabled = true
+
+###############################################################################
+# Modules
+###############################################################################
+
+[username]
+style_user = "bold bright-blue"
+show_always = true
+
+[directory]
+truncation_length = 3
+style = "bold #A0D885"
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[time]
+time_format = "%T"
+format = "| $time($style) | "
+style = "bright-white"
+disabled = false
+
+[[battery.display]]
+threshold = 25
+style = "bold red"
+
+[[battery.display]]
+threshold = 50
+style = "bold yellow"
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+
+[status]
+style = "bg"
+format = '| [\[$int\]]($style) '
+map_symbol = true
+disabled = false
+
+[cmd_duration]
+min_time = 1_00  # Show command duration over 1,00 milliseconds (=0.1 sec)
+format = "| took [$duration]($style) "
+
+[hostname]
+ssh_only = true
+format = "<[$hostname]($style)>"
+trim_at = "-"
+style = "bold dimmed white"
+disabled = true
+
+[git_branch]
+format = "[$symbol$branch]($style)"
+symbol = ""
+style = "bold yellow"
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "ahead ×${count} "
+behind = "behind ×${count} "
+diverged = "diverged adead ×${ahead_count} behind ×${behind_count} "
+untracked = "untracked  ×${count} "
+stashed = "stashed "
+modified = "modified ×${count} "
+staged = "commited  ×${count} "
+renamed = "renamed ×${count} "
+deleted = "deleted  ×${count} "
+style = "bright-white "
+format = "$all_status$ahead_behind "
+
+[character]
+success_symbol = "[➜](bold white)"
