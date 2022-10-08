@@ -229,8 +229,8 @@
             dest: "/usr/share/fonts/"
             remote_src: yes
         - name: Download & Install Agave
-          get_url:
-            url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Agave.zip
+          ansible.builtin.unarchive:
+            src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Agave.zip
             dest: "/usr/share/fonts/"
             remote_src: yes
         - name: Download & Install AnonymousPro
