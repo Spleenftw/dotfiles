@@ -223,29 +223,62 @@
         
     - name : Fonts
       block:
-        - name: Download 3270
+        - name: Download & Install 3270
           ansible.builtin.unarchive:
-            src: https://github.com/rbanffy/3270font/releases/download/v3.0.1/3270_fonts_d916271.zip
-            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/3270.zip
+            dest: "/usr/share/fonts/"
             remote_src: yes
-
-        - name: Download Agave
+        - name: Download & Install Agave
           get_url:
-            url: https://github.com/blobject/agave/releases/latest/download/Agave-Regular.ttf
-            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Agave.zip
+            dest: "/usr/share/fonts/"
             remote_src: yes
-
-        - name: Download AnonymousPro
+        - name: Download & Install AnonymousPro
           ansible.builtin.unarchive:
-            src: https://fonts.google.com/download?family=Anonymous%20Pro
-            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/AnonymousPro.zip
+            dest: "/usr/share/fonts/"
             remote_src: yes
-
-        - name: Download Arimo
+        - name: Download & Install Arimo
           ansible.builtin.unarchive:
-            src: https://fonts.google.com/download?family=Arimo
-            dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+            src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Arimo.zip
+            dest: "/usr/share/fonts/"
             remote_src: yes
+        - name: Download & Install Aurulent-Sans-Mono
+          ansible.builtin.unarchive:
+            src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/AurulentSansMono.zip
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        - name: Download & Install BigBlueTerminal
+          ansible.builtin.unarchive:
+            src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/BigBlueTerminal.zip
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        - name: Download & Install cMap
+          ansible.builtin.unarchive:
+            src: https://www.pdflib.com/binaries/resources/PDFlib-CMap-5.0.zip
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        - name: Download & Install Icomoon
+          ansible.builtin.unarchive:
+            src: https://github.com/Keyamoon/IcoMoon-Free/archive/master.zip
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        - name: Download & Install Papyrus
+          ansible.builtin.unarchive:
+            src: https://dl.freefontsfamily.com/download/papyrus
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        - name: Download & Install fontawesome-web
+          ansible.builtin.unarchive:
+            src: https://use.fontawesome.com/releases/v6.2.0/fontawesome-free-6.2.0-web.zip
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        - name: Download & Install fontawesome-desktop
+          ansible.builtin.unarchive:
+            src: https://use.fontawesome.com/releases/v6.2.0/fontawesome-free-6.2.0-desktop.zip
+            dest: "/usr/share/fonts/"
+            remote_src: yes
+        
 
     - name: Remove useless packages from the cache
       apt:
