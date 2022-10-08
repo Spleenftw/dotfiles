@@ -266,7 +266,7 @@
         - name: Download & Install Papyrus
           ansible.builtin.unarchive:
             src: https://dl.freefontsfamily.com/download/papyrus
-            dest: "/usr/share/fonts/"
+            dest: "/usr/share/icons/"
             remote_src: yes
         - name: Download & Install fontawesome-web
           ansible.builtin.unarchive:
