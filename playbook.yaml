@@ -8,6 +8,10 @@
         regexp: 'us'
         replace: 'fr'
 
+    - name: Add sid repo
+      apt_repository: 
+        repo: deb http://deb.debian.org/debian sid main
+        
     - name: Install core
       apt:
         name:
@@ -33,10 +37,6 @@
             remote_src: yes
         - name: Source go
           shell: export PATH=/usr/local/go/bin:${PATH}
-
-    - name: Add sid repo
-      apt_repository: 
-        repo: deb http://deb.debian.org/debian sid main
 
     - name: Install some basic utils
       apt:
