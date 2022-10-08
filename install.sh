@@ -13,7 +13,7 @@ git clone https://github.com/xinhaoyuan/layout-machi.git # downloading layout-ma
 mv layout-machi/ $HOME/.config/awesome/ # putting the layout-machi conf in the awesome directory
 
 git clone https://github.com/spleenftw/wallpapers.git # downloading layout-machi, the special awesomewm layout i'm using
-mv layout-machi/ $HOME/Github
+mv wallpapers/ $HOME/Github
 
 wal -q -i $HOME/Github/wallpapers/2160x1440 # initializing pywal
 
