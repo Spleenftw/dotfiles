@@ -11,7 +11,7 @@
     - name: Add sid repo
       apt_repository: 
         repo: deb http://deb.debian.org/debian sid main
-        
+
     - name: Install core
       apt:
         name:
@@ -287,9 +287,3 @@
     - name: Remove dependencies that are no longer required
       apt:
         autoremove: yes
-
-    - name: Wrap up user install
-      script: install.sh
-      args:
-        chdir: /home/spleenftw/Github/dotfiles
-      become_user: spleenftw
