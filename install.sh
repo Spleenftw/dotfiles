@@ -7,7 +7,7 @@ sudo pip3 install pywal # installing pywal, the color theme generator
 
 curl -sS https://starship.rs/install.sh | sh -s -- --yes # installing starship (prompt) and forcing it
 
-cp -R awesome polybar kitty fish nvim starship batcat autorandr $HOME/.config  #mooving all the configuration file from github to the local configuration file.
+cp -R awesome polybar kitty fish nvim starship autorandr $HOME/.config  #mooving all the configuration file from github to the local configuration file.
 
 git clone https://github.com/xinhaoyuan/layout-machi.git # downloading layout-machi, the special awesomewm layout i'm using
 mv layout-machi/ $HOME/.config/awesome/ # putting the layout-machi conf in the awesome directory
