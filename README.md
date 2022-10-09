@@ -82,7 +82,7 @@ chmod+x init.sh
 # Other files 
 You can find the screenshots used before in the [/example](https://github.com/Spleenftw/dotfiles/tree/main/example) folder.
 
-You can find all of the wallpapers i'm using in the [wallpapers](https://github.com/Spleenftw/wallpapers) repository. I've put all the wallpapers i'm using into the [wallpapers/originalres](https://github.com/Spleenftw/wallpapers/originalres) folder and resized them to [1920x1080](https://github.com/Spleenftw/wallpapers/1920x1080) & [2160x1440](https://github.com/Spleenftw/wallpapers/2160x1440). 
+You can find all of the wallpapers i'm using in the [wallpapers](https://github.com/Spleenftw/wallpapers) repository. I've put all the wallpapers i'm using into the [wallpapers/originalres](https://github.com/Spleenftw/wallpapers/tree/main/originalres) folder and resized them to [1920x1080](hhttps://github.com/Spleenftw/wallpapers/tree/main/1920x1080) & [2160x1440](https://github.com/Spleenftw/wallpapers/tree/main/2160x1440). 
 
 
 # Todo list
