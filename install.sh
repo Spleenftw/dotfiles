@@ -21,6 +21,9 @@ chmod +x $HOME/Github/dotfiles/Scripts/rofi-bluetooth # giving the execution rig
 
 chsh -s $(which fish) # defining fish as the default shell 
 
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fisher install IlanCosman/tide@v5
+
 printf "\n"
 printf "\n"
 printf "Do you want slock-blur with ? [yes/N] \n" #asking if i want dl slock-blur
