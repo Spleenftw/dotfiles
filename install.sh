@@ -23,6 +23,12 @@ chsh -s $(which fish) # defining fish as the default shell
 
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 fisher install IlanCosman/tide@v5
+fisher install jorgebucaran/fisher
+fisher install jorgebucaran/fish-bax
+fisher install danhper/fish-ssh-agent
+fisher install  jorgebucaran/autopair.fish
+fisher install  patrickf1/fzf.fish
+
 
 printf "\n"
 printf "\n"
