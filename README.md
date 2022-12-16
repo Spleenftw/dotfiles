@@ -67,7 +67,7 @@ Then simply log-out and choose awesomewm as windows manager when you're logging 
 - git
 - sudo access
 
-``/!\ Care changing the user name with yours in the playbook.yaml /!\``
+``/!\ Don't forget to change the user name with yours in the playbook.yaml /!\``
 
 CLI 
 ```
